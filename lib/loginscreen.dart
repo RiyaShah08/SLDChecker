@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_input_field/flutter_input_field.dart';
 import 'package:sldchecker/createaccount.dart';
+import 'package:sldchecker/drawer.dart';
 import 'package:sldchecker/homescreen.dart';
 import 'package:sldchecker/homescreen.dart';
 import 'package:validation_textformfield/validation_textformfield.dart';
