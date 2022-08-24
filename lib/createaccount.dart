@@ -1,12 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_input_field/flutter_input_field.dart';
-import 'package:sldchecker/createaccount.dart';
-import 'package:sldchecker/drawer.dart';
 import 'package:sldchecker/homescreen.dart';
-import 'package:sldchecker/homescreen.dart';
-import 'package:validation_textformfield/validation_textformfield.dart';
+import 'package:sldchecker/navigationdrawer.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
+import 'model/usermodel.dart';
 
 class CreateAccount extends StatefulWidget {
   const CreateAccount({Key? key}) : super(key: key);
@@ -20,13 +21,15 @@ class _CreateAccountState extends State<CreateAccount> {
 
   final TextEditingController emailController = new TextEditingController();
   final TextEditingController passController = new TextEditingController();
+  final TextEditingController cfpassController = new TextEditingController();
+  final _auth = FirebaseAuth.instance;
+
   GlobalKey<FormState> key = GlobalKey<FormState>();
   GlobalKey<ScaffoldState> skey = GlobalKey<ScaffoldState>();
 
-  //final _auth = FirebaseAuth.instance;
   String type = 'user';
-  bool pass = false;
-  bool cpass = false;
+  bool _obscureText = true;
+  bool _obscureText1 = true;
 
   @override
   Widget build(BuildContext context) {
@@ -57,13 +60,13 @@ class _CreateAccountState extends State<CreateAccount> {
           enabledBorder:
           OutlineInputBorder(borderSide: BorderSide(color: Color(0xFFECB819))),
           border: OutlineInputBorder(borderRadius: BorderRadius.circular(5))),
-      style: TextStyle(color: Color(0xFFD9D9D9)),
+      style: TextStyle(color: Colors.black),
     );
 
     final passField = TextFormField(
       autofocus: false,
       controller: passController,
-      obscureText: true,
+      obscureText: _obscureText,
       validator: (value) {
         RegExp regex = new RegExp(r'^.{6,}$');
         if (value!.isEmpty) {
@@ -82,10 +85,10 @@ class _CreateAccountState extends State<CreateAccount> {
           contentPadding: EdgeInsets.fromLTRB(20, 15, 20, 15),
           hintText: "Password",
           suffixIcon: IconButton(
-            icon: Icon(pass?Icons.visibility:Icons.visibility_off),
+            icon: Icon(_obscureText?Icons.visibility:Icons.visibility_off),
             color: Color(0xFFD9D9D9), onPressed: () {
             setState(() {
-              pass = !pass;
+              _obscureText = !_obscureText;
             });
             },
           ),
@@ -96,36 +99,32 @@ class _CreateAccountState extends State<CreateAccount> {
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(5),
           )),
-      style: TextStyle(color: Color(0xFFD9D9D9)),
+      style: TextStyle(color: Colors.black),
     );
 
 
     final confirmpass = TextFormField(
       autofocus: false,
-      controller: passController,
-      obscureText: true,
+      controller: cfpassController,
+      obscureText: _obscureText1,
       validator: (value) {
-        RegExp regex = new RegExp(r'^.{6,}$');
-        if (value!.isEmpty) {
-          return ("please Enter correct Password");
+        if (cfpassController.text.length > 6 && passController.text != value) {
+          return "Password doesn't match";
         }
-        if (!regex.hasMatch(value)) {
-          return ("wrong password");
-        }
+        return null;
       },
       onSaved: (value) {
-        passController.text = value!;
+        cfpassController.text = value!;
       },
-
       textInputAction: TextInputAction.done,
       decoration: InputDecoration(
           contentPadding: EdgeInsets.fromLTRB(20, 15, 20, 15),
           hintText: "Confirm Password",
           suffixIcon: IconButton(
-            icon: Icon(cpass?Icons.visibility:Icons.visibility_off),
+            icon: Icon(_obscureText1?Icons.visibility:Icons.visibility_off),
             color: Color(0xFFD9D9D9), onPressed: () {
               setState(() {
-                cpass = !cpass;
+                _obscureText1 = !_obscureText1;
               });
             },
           ),
@@ -136,7 +135,7 @@ class _CreateAccountState extends State<CreateAccount> {
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(5),
           )),
-      style: TextStyle(color: Color(0xFFD9D9D9)),
+      style: TextStyle(color: Colors.black),
     );
 
     final signupbutton = Material(
@@ -148,7 +147,7 @@ class _CreateAccountState extends State<CreateAccount> {
         elevation: 20,
         minWidth: MediaQuery.of(context).size.width,
         onPressed: () {
-          //logIn(emailController.text, passController.text);
+          signUp(emailController.text, passController.text);
         },
         child: Text(
           "SignUp",
@@ -177,14 +176,14 @@ class _CreateAccountState extends State<CreateAccount> {
             fontFamily: "Poppins",
             fontWeight: FontWeight.w600),),
         onPressed: () {
-          Navigator.push(context, MaterialPageRoute(builder: (context) => HomePaege(), ), );
+          Navigator.push(context, MaterialPageRoute(builder: (context) => DrawerScreen(), ), );
         },
       ),
     );
 
     return SafeArea(
       child: Scaffold(
-        body: Center(
+        body: SingleChildScrollView(
           child: Padding(
             padding: EdgeInsets.only(left: 20.0, right: 20, top: 25),
             child: Form(
@@ -230,18 +229,30 @@ class _CreateAccountState extends State<CreateAccount> {
     );
   }
 
-// void logIn(String email, String password) async {
-//   if (_formkey.currentState!.validate()) {
-//     await _auth
-//         .signInWithEmailAndPassword(email: email, password: password)
-//         .then((uid) => {
-//       Fluttertoast.showToast(msg: "Login successful"),
-//       Navigator.of(context).pushReplacement(
-//           MaterialPageRoute(builder: (context) => homescreen())),
-//     })
-//         .catchError((e) {
-//       Fluttertoast.showToast(msg: e!.message);
-//     });
-//   }
-// }
+   void signUp(String email, String password) async {
+     if (_formkey.currentState!.validate()) {
+       await _auth
+           .createUserWithEmailAndPassword(email: email, password: password)
+           .then((value) => postDetailsToFirestore())
+           .catchError((e) {
+         Fluttertoast.showToast(msg: e!.message);
+       });
+     }
+   }
+
+ postDetailsToFirestore() async {
+      FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
+      User? user = _auth.currentUser;
+
+      UserModel userModel = UserModel();
+
+      userModel.email = user!.email;
+      userModel.uid = user.uid;
+
+      await firebaseFirestore.collection("users").doc(user.uid).set(userModel.toMap());
+      Fluttertoast.showToast(msg: "Account created successfully");
+      Navigator.pushAndRemoveUntil((context),
+          MaterialPageRoute(builder: (context) => DrawerScreen()),
+              (route) => false);
+ }
 }

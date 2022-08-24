@@ -9,9 +9,9 @@ class ContentPage extends StatelessWidget {
       child: Scaffold(
         body: SingleChildScrollView(
           child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Padding(
+            crossAxisAlignment: CrossAxisAlignment.start,
+             children: [
+               Padding(
                 padding: const EdgeInsets.all(30.0),
                 child: Row(
                   children: [
@@ -19,27 +19,28 @@ class ContentPage extends StatelessWidget {
                     Expanded(child: Padding(
                       padding: const EdgeInsets.only(left: 220.0),
                       child: Image.asset('asset/profile.png', height: 45, width: 45,),
-                    ),),
-             ]),),
-            Padding(
-              padding: const EdgeInsets.all(30.0),
-              child: RichText(
-                textAlign: TextAlign.justify,
-                text: TextSpan(
-                  text: 'Online Learning Disability Tests',
-                  style: TextStyle(color: Color(0xFFECB819), fontSize: 18, fontFamily: "Poppins", fontWeight: FontWeight.w600,), /*defining default style is optional */
-                  children: <TextSpan>[
-                    TextSpan(
-                        text: '\nFree,research-based online testing for learning disabilities', style: TextStyle(color: Colors.black, fontSize: 18, fontFamily: "Poppins", fontWeight: FontWeight.w200)),
-                  ],
-                ),
-              ),
-            ),
-          Text("Concerned Your Child May Have a Learning Disability?", style: TextStyle(fontSize: 18, fontFamily: "Poppins", fontWeight: FontWeight.w600, color: Color(0xFF0085A3)),),
-          Text("Test Available", style: TextStyle(fontWeight: FontWeight.w600, fontSize: 20,),),
-        ]),
+                      ),),
+                   ]),),
+                  Padding(
+                    padding: const EdgeInsets.all(30.0),
+                    child: RichText(
+                      text: TextSpan(
+                        text: 'Online Learning Disability Tests',
+                        style: TextStyle(color: Color(0xFFECB819), fontSize: 18, fontFamily: "Poppins", fontWeight: FontWeight.w600,), /*defining default style is optional */
+                        children: <TextSpan>[
+                         TextSpan(
+                              text: '\nFree,research-based online testing \nfor learning disabilities', style: TextStyle(color: Colors.black, fontSize: 16, fontFamily: "Poppins", fontWeight: FontWeight.w200)),
+                          TextSpan(
+                              text: '\n\n\nConcerned Your Child May Have a Learning Disability?', style: TextStyle(color: Color(0xFF0085A3), fontSize: 16, fontFamily: "Poppins", fontWeight: FontWeight.w600)),
+                          TextSpan(
+                              text: '\n\nTest Available', style: TextStyle(color: Color(0xFFECB819), fontSize: 20, fontFamily: "Poppins", fontWeight: FontWeight.w600)),
+                        ],
+                      ),
+                    ),
+                  ),
+              ]),
+          ),
         ),
-      ),
     );
   }
 }
