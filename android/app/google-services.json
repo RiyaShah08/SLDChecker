@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "303086030200",
+    "project_id": "sldchecker-17acc",
+    "storage_bucket": "sldchecker-17acc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:303086030200:android:e0d8615d77d649e8d94c8d",
+        "android_client_info": {
+          "package_name": "com.example.sldchecker"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "303086030200-0vrqrh2ipubl129dtutk882s2nc6r7o2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDi-SFR4HUDojOVXZw47bUOV9f6cX6z0KU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "303086030200-0vrqrh2ipubl129dtutk882s2nc6r7o2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
