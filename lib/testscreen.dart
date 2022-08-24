@@ -1,9 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:sldchecker/contenttest.dart';
-import 'package:sldchecker/drawer.dart';
 import 'package:sldchecker/homescreen.dart';
-import 'package:sldchecker/homescreen.dart';
+import 'package:sldchecker/therapy.dart';
 
 class TestPage extends StatefulWidget {
   const TestPage({Key? key}) : super(key: key);
@@ -22,19 +21,21 @@ class _TestPageState extends State<TestPage> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Padding(
-                padding: const EdgeInsets.all(30.0),
+                padding: const EdgeInsets.only(right: 30.0, top: 30, left: 20),
                 child: Row(
                   children: [
-                    Icon(Icons.arrow_back_ios),
+                    IconButton(icon: Icon(Icons.arrow_back_ios), onPressed: () {
+                      Navigator.pop(context);
+                    },),
                     Expanded(child: Padding(
-                      padding: const EdgeInsets.only(left: 225.0),
+                      padding: const EdgeInsets.only(left: 200.0),
                       child: Image.asset('asset/profile.png', height: 45, width: 45,),
                     )),
                   ],
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(left: 30.0),
+                padding: const EdgeInsets.only(left: 30.0, top: 25),
                 child: Column(
                   children: [
                     Text("Free SLD Test for Children", style: TextStyle(fontFamily: "Poppins", fontSize: 20, fontWeight: FontWeight.w700, color: Colors.black),),
@@ -48,7 +49,7 @@ class _TestPageState extends State<TestPage> {
               ),
 
               Padding(
-                padding: const EdgeInsets.only(top: 25.0, right: 20, left: 20),
+                padding: const EdgeInsets.only(top: 25.0, right: 25, left: 25),
                 child: RichText(
                   textAlign: TextAlign.justify,
                   text: TextSpan(
@@ -59,7 +60,7 @@ class _TestPageState extends State<TestPage> {
                           text: '\n5 to 10 minutes!', style: TextStyle(color: Colors.black, fontSize: 20, fontFamily: "Poppins", fontWeight: FontWeight.bold)),
                       TextSpan(
                           text: '\nOver 200,000 parents have tested their children with SLD Checker’s screener.',
-                          style: TextStyle(color: Colors.black, fontSize: 18, fontFamily: "Poppins", fontWeight: FontWeight.w200)),
+                          style: TextStyle(color: Colors.black, fontSize: 16, fontFamily: "Poppins", fontWeight: FontWeight.w200)),
                     ],
                   ),
                 ),
