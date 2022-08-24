@@ -1,11 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_input_field/flutter_input_field.dart';
-import 'package:sldchecker/createaccount.dart';
-import 'package:sldchecker/drawer.dart';
+import 'package:sldchecker/forgotpass.dart';
 import 'package:sldchecker/homescreen.dart';
-import 'package:sldchecker/homescreen.dart';
-import 'package:validation_textformfield/validation_textformfield.dart';
+import 'package:sldchecker/navigationdrawer.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 class Login extends StatefulWidget {
   const Login({Key? key}) : super(key: key);
@@ -19,13 +20,14 @@ class _LoginState extends State<Login> {
 
   final TextEditingController emailController = new TextEditingController();
   final TextEditingController passController = new TextEditingController();
+
   GlobalKey<FormState> key = GlobalKey<FormState>();
   GlobalKey<ScaffoldState> skey = GlobalKey<ScaffoldState>();
+  final _auth = FirebaseAuth.instance;
 
-  //final _auth = FirebaseAuth.instance;
   String type = 'user';
-  bool pass = false;
-  bool cpass = false;
+  bool _obscureText = true;
+  String userEmail = "";
 
   @override
   Widget build(BuildContext context) {
@@ -46,7 +48,6 @@ class _LoginState extends State<Login> {
       onSaved: (value) {
         emailController.text = value!;
       },
-
       textInputAction: TextInputAction.next,
       decoration: InputDecoration(
           contentPadding: EdgeInsets.fromLTRB(20, 10, 20, 10),
@@ -56,13 +57,14 @@ class _LoginState extends State<Login> {
           enabledBorder:
           OutlineInputBorder(borderSide: BorderSide(color: Color(0xFFECB819))),
           border: OutlineInputBorder(borderRadius: BorderRadius.circular(5))),
-      style: TextStyle(color: Color(0xFFD9D9D9)),
+      style: TextStyle(color: Colors.black),
     );
+
 
     final passField = TextFormField(
       autofocus: false,
       controller: passController,
-      obscureText: true,
+      obscureText: _obscureText,
       validator: (value) {
         RegExp regex = new RegExp(r'^.{6,}$');
         if (value!.isEmpty) {
@@ -75,16 +77,15 @@ class _LoginState extends State<Login> {
       onSaved: (value) {
         passController.text = value!;
       },
-
       textInputAction: TextInputAction.done,
       decoration: InputDecoration(
           contentPadding: EdgeInsets.fromLTRB(20, 15, 20, 15),
           hintText: "Password",
           suffixIcon: IconButton(
-            icon: Icon(pass?Icons.visibility:Icons.visibility_off),
+            icon: Icon(_obscureText?Icons.visibility:Icons.visibility_off),
             color: Color(0xFFD9D9D9), onPressed: () {
               setState(() {
-                pass = !pass;
+                _obscureText = !_obscureText;
              });
             },
           ),
@@ -98,6 +99,7 @@ class _LoginState extends State<Login> {
       ),
     );
 
+
     final loginButton = Material(
       elevation: 5,
       borderRadius: BorderRadius.circular(5),
@@ -107,7 +109,7 @@ class _LoginState extends State<Login> {
         elevation: 20,
         minWidth: MediaQuery.of(context).size.width,
         onPressed: () {
-          //logIn(emailController.text, passController.text);
+            Login(emailController.text, passController.text);
         },
         child: Text(
           "Login",
@@ -120,6 +122,7 @@ class _LoginState extends State<Login> {
         ),
       ),
     );
+
 
     final loginwgButton = Material(
       child: MaterialButton(
@@ -135,15 +138,19 @@ class _LoginState extends State<Login> {
                 fontSize: 18,
                 fontFamily: "Poppins",
                 fontWeight: FontWeight.w600),),
-            onPressed: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context) => HomePaege(), ), );
+            onPressed: () async {
+              await signInWithGoogle();
+              setState(() {
+
+              });
+              Navigator.push(context, MaterialPageRoute(builder: (context) => DrawerScreen(), ), );
             },
         ),
     );
 
     return SafeArea(
       child: Scaffold(
-        body: Center(
+        body: SingleChildScrollView(
           child: Padding(
             padding: EdgeInsets.only(left: 20.0, right: 20, top: 25),
             child: Form(
@@ -167,7 +174,15 @@ class _LoginState extends State<Login> {
                   SizedBox(
                     height: 3,
                   ),
-                  Align(alignment: Alignment.topRight,child: Text("Forgot Password?", style: TextStyle(color: Colors.black, fontFamily: "Poppins", fontWeight: FontWeight.w100, fontSize: 14),)),
+                  Align(
+                    alignment: Alignment.topRight,
+                    child: new GestureDetector(
+                      onTap: () {
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => ForgotPage(), ), );
+                      },
+                      child: new Text("Forgot Password ?"),
+                    ),
+                  ),
                   SizedBox(
                     height: 35,
                   ),
@@ -179,7 +194,7 @@ class _LoginState extends State<Login> {
                   SizedBox(
                     height: 10,
                   ),
-                  loginwgButton,
+                  loginwgButton
                 ],
               ),
             ),
@@ -189,18 +204,37 @@ class _LoginState extends State<Login> {
     );
   }
 
-  // void logIn(String email, String password) async {
-  //   if (_formkey.currentState!.validate()) {
-  //     await _auth
-  //         .signInWithEmailAndPassword(email: email, password: password)
-  //         .then((uid) => {
-  //       Fluttertoast.showToast(msg: "Login successful"),
-  //       Navigator.of(context).pushReplacement(
-  //           MaterialPageRoute(builder: (context) => homescreen())),
-  //     })
-  //         .catchError((e) {
-  //       Fluttertoast.showToast(msg: e!.message);
-  //     });
-  //   }
-  // }
+
+   void Login(String email, String password) async {
+     if (_formkey.currentState!.validate()) {
+      await _auth.signInWithEmailAndPassword(email: email, password: password).then((uid) => {
+         Fluttertoast.showToast(msg: "Login successful"),
+         Navigator.of(context).pushReplacement(
+             MaterialPageRoute(builder: (context) => DrawerScreen())),
+       })
+           .catchError((e) {
+         Fluttertoast.showToast(msg: e!.message);
+       });
+     }
+   }
+
+
+  Future<UserCredential> signInWithGoogle() async {
+    // Trigger the authentication flow
+    final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+
+    // Obtain the auth details from the request
+    final GoogleSignInAuthentication? googleAuth = await googleUser?.authentication;
+
+    // Create a new credential
+    final credential = GoogleAuthProvider.credential(
+      accessToken: googleAuth?.accessToken,
+      idToken: googleAuth?.idToken,
+    );
+
+    userEmail = googleUser!.email;
+
+    // Once signed in, return the UserCredential
+    return await FirebaseAuth.instance.signInWithCredential(credential);
+  }
 }
