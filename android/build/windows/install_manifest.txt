@@ -1,0 +1,8 @@
+D:/sem7/cp3/SLDChecker/android/build/windows/runner/Debug/data/icudtl.dat
+D:/sem7/cp3/SLDChecker/android/build/windows/runner/Debug/flutter_windows.dll
+D:/sem7/cp3/SLDChecker/android/build/windows/runner/Debug/data/flutter_assets/AssetManifest.json
+D:/sem7/cp3/SLDChecker/android/build/windows/runner/Debug/data/flutter_assets/FontManifest.json
+D:/sem7/cp3/SLDChecker/android/build/windows/runner/Debug/data/flutter_assets/fonts/MaterialIcons-Regular.otf
+D:/sem7/cp3/SLDChecker/android/build/windows/runner/Debug/data/flutter_assets/kernel_blob.bin
+D:/sem7/cp3/SLDChecker/android/build/windows/runner/Debug/data/flutter_assets/NOTICES.Z
+D:/sem7/cp3/SLDChecker/android/build/windows/runner/Debug/data/flutter_assets/packages/cupertino_icons/assets/CupertinoIcons.ttf

@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="D:\sem7\cp3\SLDChecker\android\build\windows\CMakeFiles\def2118a2aa06038e3ecfd62d30431a4\INSTALL_force.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{42E7AD91-BECA-39B1-95C1-8552904A581A}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

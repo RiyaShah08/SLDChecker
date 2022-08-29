@@ -1,0 +1,28 @@
+^D:\SEM7\CP3\SLDCHECKER\ANDROID\BUILD\WINDOWS\CMAKEFILES\0D08B93F169AFA147E51BD8D14338CC5\FLUTTER_WINDOWS.DLL.RULE
+setlocal
+"C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -E env FLUTTER_ROOT=C:\Users\Riya\Documents\flutter PROJECT_DIR=D:\sem7\cp3\SLDChecker\android FLUTTER_ROOT=C:\Users\Riya\Documents\flutter FLUTTER_EPHEMERAL_DIR=D:\sem7\cp3\SLDChecker\android\windows\flutter\ephemeral PROJECT_DIR=D:\sem7\cp3\SLDChecker\android FLUTTER_TARGET=D:\sem7\cp3\SLDChecker\android\lib\main.dart DART_DEFINES=RkxVVFRFUl9XRUJfQVVUT19ERVRFQ1Q9dHJ1ZQ== DART_OBFUSCATION=false TRACK_WIDGET_CREATION=true TREE_SHAKE_ICONS=false PACKAGE_CONFIG=D:\sem7\cp3\SLDChecker\android\.dart_tool\package_config.json C:/Users/Riya/Documents/flutter/packages/flutter_tools/bin/tool_backend.bat windows-x64 Debug
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+^D:\SEM7\CP3\SLDCHECKER\ANDROID\BUILD\WINDOWS\CMAKEFILES\70953283B555D55F14D839057361DB38\FLUTTER_ASSEMBLE.RULE
+setlocal
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+^D:\SEM7\CP3\SLDCHECKER\ANDROID\WINDOWS\FLUTTER\CMAKELISTS.TXT
+setlocal
+"C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -SD:/sem7/cp3/SLDChecker/android/windows -BD:/sem7/cp3/SLDChecker/android/build/windows --check-stamp-file D:/sem7/cp3/SLDChecker/android/build/windows/flutter/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
