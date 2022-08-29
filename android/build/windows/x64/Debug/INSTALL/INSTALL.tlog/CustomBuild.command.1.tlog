@@ -1,0 +1,10 @@
+^D:\SEM7\CP3\SLDCHECKER\ANDROID\BUILD\WINDOWS\CMAKEFILES\DEF2118A2AA06038E3ECFD62D30431A4\INSTALL_FORCE.RULE
+setlocal
+cd .
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
