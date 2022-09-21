@@ -42,14 +42,18 @@ dependencies:
   image_picker: ^0.8.5+3
   stacked_page_view: ^1.1.2
   firebase_auth: ^3.3.10
+  dropdown_textfield: ^1.0.3
   firebase_core: ^1.21.0
   cloud_firestore: ^3.1.10
   fluttertoast: ^8.0.9
   google_sign_in: ^5.4.1
+  another_stepper: ^1.0.4
+  status_stepper: ^1.0.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  http:
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
