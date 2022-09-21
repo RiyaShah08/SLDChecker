@@ -27,6 +27,7 @@ class _TestPageState extends State<TestPage> {
                     IconButton(icon: Icon(Icons.arrow_back_ios), onPressed: () {
                       Navigator.pop(context);
                     },),
+
                     Expanded(child: Padding(
                       padding: const EdgeInsets.only(left: 200.0),
                       child: Image.asset('asset/profile.png', height: 45, width: 45,),
@@ -38,7 +39,7 @@ class _TestPageState extends State<TestPage> {
                 padding: const EdgeInsets.only(left: 30.0, top: 25),
                 child: Column(
                   children: [
-                    Text("Free SLD Test for Children", style: TextStyle(fontFamily: "Poppins", fontSize: 20, fontWeight: FontWeight.w700, color: Colors.black),),
+                    Text("Free SLD Test for Children", style: TextStyle(fontFamily: "Poppins", fontSize: 20, fontWeight: FontWeight.w600, color: Colors.black),),
                   ],
                 ),
               ),
@@ -57,7 +58,7 @@ class _TestPageState extends State<TestPage> {
                     style: TextStyle(color: Colors.black, fontSize: 20, fontFamily: "Poppins", fontWeight: FontWeight.w200,), /*defining default style is optional */
                     children: <TextSpan>[
                       TextSpan(
-                          text: '\n5 to 10 minutes!', style: TextStyle(color: Colors.black, fontSize: 20, fontFamily: "Poppins", fontWeight: FontWeight.bold)),
+                          text: '\n5 to 10 minutes!', style: TextStyle(color: Colors.black, fontSize: 20, fontFamily: "Poppins", fontWeight: FontWeight.w600)),
                       TextSpan(
                           text: '\nOver 200,000 parents have tested their children with SLD Checker’s screener.',
                           style: TextStyle(color: Colors.black, fontSize: 16, fontFamily: "Poppins", fontWeight: FontWeight.w200)),
