@@ -41,7 +41,7 @@ class _sldhomeState extends State<sldhome> {
                       Text("SLD Checkers", style: TextStyle(
                           color: Color(0xFF0085A3),
                           fontFamily: "Poppins",
-                          fontWeight: FontWeight.bold,
+                          fontWeight: FontWeight.w600,
                           fontSize: 35),),
 
                       Image.asset('asset/mainima.png'),
