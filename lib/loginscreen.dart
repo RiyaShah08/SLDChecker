@@ -118,7 +118,7 @@ class _LoginState extends State<Login> {
               fontSize: 20,
               fontFamily: "Poppins",
               color: Colors.white,
-              fontWeight: FontWeight.w700),
+              fontWeight: FontWeight.w600),
         ),
       ),
     );
@@ -159,7 +159,7 @@ class _LoginState extends State<Login> {
               child: Column(
                 children: <Widget>[
                   Image.asset('asset/personbook.png', height: 250, width: 310,),
-                  Text("Hello, Welcome Back!", style: TextStyle(color: Color(0xFF0085A3), fontFamily: "Poppins", fontWeight: FontWeight.bold, fontSize: 25),),
+                  Text("Hello, Welcome Back!", style: TextStyle(color: Color(0xFF0085A3), fontFamily: "Poppins", fontWeight: FontWeight.w600, fontSize: 25),),
                   SizedBox(height: 30),
                   Align(
                       alignment: Alignment.topLeft, child: Text("Sign In", style: TextStyle(color: Colors.black, fontFamily: "Poppins", fontWeight: FontWeight.w300, fontSize: 20),)),
