@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class ForgotPage extends StatefulWidget {
@@ -9,7 +10,13 @@ class ForgotPage extends StatefulWidget {
 
 class _ForgotPageState extends State<ForgotPage> {
   final _formkey = GlobalKey<FormState>();
-  final TextEditingController emailController = new TextEditingController();
+  final emailController = TextEditingController();
+
+  void dispose() {
+    emailController.dispose();
+
+    super.dispose();
+  }
 
   GlobalKey<FormState> key = GlobalKey<FormState>();
   GlobalKey<ScaffoldState> skey = GlobalKey<ScaffoldState>();
@@ -53,9 +60,7 @@ class _ForgotPageState extends State<ForgotPage> {
         height: 40,
         elevation: 20,
         minWidth: MediaQuery.of(context).size.width,
-        onPressed: () {
-          //Login(emailController.text);
-        },
+        onPressed: forgotpassword,
         child: Text(
           "Submit",
           textAlign: TextAlign.center,
@@ -63,7 +68,7 @@ class _ForgotPageState extends State<ForgotPage> {
               fontSize: 20,
               fontFamily: "Poppins",
               color: Colors.white,
-              fontWeight: FontWeight.w700),
+              fontWeight: FontWeight.w600),
         ),
       ),
     );
@@ -82,7 +87,7 @@ class _ForgotPageState extends State<ForgotPage> {
                 Image.asset('asset/forgotpass.png', height: 290, width: 310,),
                 Padding(
                   padding: const EdgeInsets.only(top: 78.0,),
-                  child: Text("Reset Password", style: TextStyle(color: Color(0xFF0085A3), fontFamily: "Poppins", fontWeight: FontWeight.bold, fontSize: 25),),
+                  child: Text("Reset Password", style: TextStyle(color: Color(0xFF0085A3), fontFamily: "Poppins", fontWeight: FontWeight.w600, fontSize: 25),),
                 ),
                 SizedBox(height: 30),
                 emailField,
@@ -98,5 +103,23 @@ class _ForgotPageState extends State<ForgotPage> {
           ),),
       ),
     );
+  }
+
+  Future forgotpassword() async{
+    try {
+      await FirebaseAuth.instance.sendPasswordResetEmail(email: emailController.text.trim());
+      showDialog(context: context, builder: (context){
+        return AlertDialog(
+          content: Text('Password reset! check mail.'),
+        );
+      });
+    } on FirebaseAuthException catch(e) {
+      print(e);
+      showDialog(context: context, builder: (context){
+        return AlertDialog(
+          content: Text(e.message.toString()),
+        );
+      });
+    }
   }
 }

@@ -6,7 +6,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-
+import 'package:google_sign_in/google_sign_in.dart';
 import 'model/usermodel.dart';
 
 class CreateAccount extends StatefulWidget {
@@ -30,6 +30,7 @@ class _CreateAccountState extends State<CreateAccount> {
   String type = 'user';
   bool _obscureText = true;
   bool _obscureText1 = true;
+  String userEmail = "";
 
   @override
   Widget build(BuildContext context) {
@@ -156,7 +157,7 @@ class _CreateAccountState extends State<CreateAccount> {
               fontSize: 20,
               fontFamily: "Poppins",
               color: Colors.white,
-              fontWeight: FontWeight.w700),
+              fontWeight: FontWeight.w600),
         ),
       ),
     );
@@ -175,7 +176,11 @@ class _CreateAccountState extends State<CreateAccount> {
             fontSize: 18,
             fontFamily: "Poppins",
             fontWeight: FontWeight.w600),),
-        onPressed: () {
+        onPressed: () async {
+          await signInWithGoogle();
+          setState(() {
+
+          });
           Navigator.push(context, MaterialPageRoute(builder: (context) => DrawerScreen(), ), );
         },
       ),
@@ -192,7 +197,7 @@ class _CreateAccountState extends State<CreateAccount> {
               child: Column(
                 children: <Widget>[
                   Image.asset('asset/personbook.png', height: 240, width: 330,),
-                  Text("Hello, Welcome!", style: TextStyle(color: Color(0xFF0085A3), fontFamily: "Poppins", fontWeight: FontWeight.bold, fontSize: 25),),
+                  Text("Hello, Welcome!", style: TextStyle(color: Color(0xFF0085A3), fontFamily: "Poppins", fontWeight: FontWeight.w600, fontSize: 25),),
                   SizedBox(height: 15),
                   Align(
                       alignment: Alignment.topLeft, child: Text("Sign Up", style: TextStyle(color: Colors.black, fontFamily: "Poppins", fontWeight: FontWeight.w300, fontSize: 20),)),
@@ -255,4 +260,23 @@ class _CreateAccountState extends State<CreateAccount> {
           MaterialPageRoute(builder: (context) => DrawerScreen()),
               (route) => false);
  }
+
+  Future<UserCredential> signInWithGoogle() async {
+    // Trigger the authentication flow
+    final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+
+    // Obtain the auth details from the request
+    final GoogleSignInAuthentication? googleAuth = await googleUser?.authentication;
+
+    // Create a new credential
+    final credential = GoogleAuthProvider.credential(
+      accessToken: googleAuth?.accessToken,
+      idToken: googleAuth?.idToken,
+    );
+
+    userEmail = googleUser!.email;
+
+    // Once signed in, return the UserCredential
+    return await FirebaseAuth.instance.signInWithCredential(credential);
+  }
 }
