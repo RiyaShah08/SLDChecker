@@ -3,6 +3,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter_advanced_drawer/flutter_advanced_drawer.dart';
 import 'package:sldchecker/homescreen.dart';
 import 'package:sldchecker/testscreen.dart';
+import 'package:sldchecker/therapymain.dart';
 
 class DrawerScreen extends StatefulWidget {
   const DrawerScreen({Key? key}) : super(key: key);
@@ -65,7 +66,9 @@ class _DrawerScreenState extends State<DrawerScreen> {
                   ),
 
                   ListTile(
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => Therapy(),),);
+                    },
                     leading: Image.asset(
                       'asset/therapy.png', height: 25, width: 25,),
                     title: Text('Therapy', style: TextStyle(
