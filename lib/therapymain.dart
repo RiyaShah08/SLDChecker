@@ -45,7 +45,7 @@ class Therapy extends StatelessWidget {
                  mainAxisAlignment: MainAxisAlignment.center,
                  children: [
                    Text('Two Types of Therapy', textAlign: TextAlign.center,style: TextStyle(color: Colors.black, fontSize: 17, fontFamily: "Inter", fontWeight: FontWeight.w600)),
-                   IconButton(icon: Icon(Icons.subdirectory_arrow_right, size: 20),
+                   IconButton(icon: Icon(Icons.fast_forward, size: 20),
                    onPressed: () {
                      Navigator.push(context,
                          MaterialPageRoute(builder: (context) => TherapyDetail()));

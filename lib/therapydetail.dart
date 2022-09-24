@@ -49,7 +49,7 @@ class TherapyDetail extends StatelessWidget {
                     child: Row(
                         children: [
                           Text('Professional Therapy', textAlign: TextAlign.center,style: TextStyle(color: Color(0xFF0085A3), fontSize: 20, fontFamily: "Inter", fontWeight: FontWeight.w600)),
-                          IconButton(icon: Icon(Icons.subdirectory_arrow_right), onPressed: () {
+                          IconButton(icon: Icon(Icons.fast_forward), color: Color(0xFF0085A3), onPressed: () {
                             Navigator.push(context, MaterialPageRoute(builder: (context) => TherapyTwo(), ), );
                           },)]
                     ),
@@ -66,7 +66,9 @@ class TherapyDetail extends StatelessWidget {
                     child: Row(
                         children: [
                           Text('Basic Therapy', textAlign: TextAlign.center,style: TextStyle(color: Color(0xFF0085A3), fontSize: 20, fontFamily: "Inter", fontWeight: FontWeight.w600)),
-                          Icon(Icons.subdirectory_arrow_right, size: 20)]
+                          IconButton(icon: Icon(Icons.fast_forward),color: Color(0xFF0085A3), onPressed: () {
+                            Navigator.push(context, MaterialPageRoute(builder: (context) => TherapyTwo(), ), );
+                          },)]
                     ),
                   ),
                   Padding(
