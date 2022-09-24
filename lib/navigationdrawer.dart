@@ -77,15 +77,15 @@ class _DrawerScreenState extends State<DrawerScreen> {
                         fontWeight: FontWeight.w100),),
                   ),
 
-                  ListTile(
-                    onTap: () {},
-                    leading: Image.asset(
-                      'asset/blog.png', height: 25, width: 25,),
-                    title: Text('Blog', style: TextStyle(
-                        fontSize: 20,
-                        fontFamily: 'Inter',
-                        fontWeight: FontWeight.w100),),
-                  ),
+                  // ListTile(
+                  //   onTap: () {},
+                  //   leading: Image.asset(
+                  //     'asset/blog.png', height: 25, width: 25,),
+                  //   title: Text('Blog', style: TextStyle(
+                  //       fontSize: 20,
+                  //       fontFamily: 'Inter',
+                  //       fontWeight: FontWeight.w100),),
+                  // ),
 
                   ListTile(
                     onTap: () {},

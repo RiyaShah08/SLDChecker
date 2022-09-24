@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:sldchecker/testscreen.dart';
+import 'package:sldchecker/therapytwo.dart';
 
 class TherapyDetail extends StatelessWidget {
   const TherapyDetail({Key? key}) : super(key: key);
@@ -47,7 +49,9 @@ class TherapyDetail extends StatelessWidget {
                     child: Row(
                         children: [
                           Text('Professional Therapy', textAlign: TextAlign.center,style: TextStyle(color: Color(0xFF0085A3), fontSize: 20, fontFamily: "Inter", fontWeight: FontWeight.w600)),
-                          Icon(Icons.subdirectory_arrow_right, size: 20)]
+                          IconButton(icon: Icon(Icons.subdirectory_arrow_right), onPressed: () {
+                            Navigator.push(context, MaterialPageRoute(builder: (context) => TherapyTwo(), ), );
+                          },)]
                     ),
                   ),
                   Padding(
@@ -189,7 +193,7 @@ class TherapyDetail extends StatelessWidget {
                               ),
                             ),
                             Padding(
-                              padding: const EdgeInsets.only(right: 25.0),
+                              padding: const EdgeInsets.only(left: 25.0),
                               child: InkWell(
                                 child: Container(
                                   width: 200,
@@ -209,15 +213,15 @@ class TherapyDetail extends StatelessWidget {
                                                     style: TextStyle(color: Colors.white, fontSize: 16, fontFamily: "Poppins", fontWeight: FontWeight.w200),
                                                   ),
                                                   TextSpan(
-                                                    text: '\n\nOur Therapists',
+                                                    text: '\nOur Therapists',
                                                     style: TextStyle(color: Colors.white, fontSize: 16, fontFamily: "Poppins", fontWeight: FontWeight.w200),
                                                   ),
                                                   TextSpan(
-                                                    text: '\n\nCareers',
+                                                    text: '\nCareers',
                                                     style: TextStyle(color: Colors.white, fontSize: 16, fontFamily: "Poppins", fontWeight: FontWeight.w200),
                                                   ),
                                                   TextSpan(
-                                                    text: '\n\nAdvisory Board',
+                                                    text: '\nAdvisory Board',
                                                     style: TextStyle(color: Colors.white, fontSize: 16, fontFamily: "Poppins", fontWeight: FontWeight.w200),
                                                   ),
                                                 ]
@@ -249,7 +253,7 @@ class TherapyDetail extends StatelessWidget {
                           fontFamily: "Poppins",
                           fontWeight: FontWeight.w600),),
                       onPressed: () {
-                        Navigator.push(context, MaterialPageRoute(builder: (context) => TherapyDetail(), ), );
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => TestPage(), ), );
                       },
                     ),
                   ),
