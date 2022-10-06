@@ -24,17 +24,17 @@ class _ScreenTestState extends State<ScreenTest> {
           children: [
             TextField(
               onChanged: (value) {
-                url = 'http://86ff-35-243-172-89.ngrok.io/' + value.toString();
+                url = 'http://41d5-35-234-2-165.ngrok.io/predict' + value.toString();
               },
             ),
             TextButton(onPressed: ()async{
               data = await fetchdata(url);
               var decoded = jsonDecode(data);
                setState(() {
-                 output = decoded['Prediction'];
+                 output = decoded['The rate is'];
                });
             }, child: Text("Predict")),
-            Text(output),
+            Text(output)
           ],
         ),
       ),

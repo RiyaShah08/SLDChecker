@@ -48,6 +48,7 @@ dependencies:
   fluttertoast: ^8.0.9
   google_sign_in: ^5.4.1
   another_stepper: ^1.0.4
+  url_launcher: ^6.1.6
   status_stepper: ^1.0.0
 
 dev_dependencies:
