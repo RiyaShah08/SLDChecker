@@ -103,7 +103,6 @@ class _CreateAccountState extends State<CreateAccount> {
       style: TextStyle(color: Colors.black),
     );
 
-
     final confirmpass = TextFormField(
       autofocus: false,
       controller: cfpassController,
