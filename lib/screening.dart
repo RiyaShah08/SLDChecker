@@ -116,6 +116,7 @@ class ScreenTest extends StatefulWidget {
                 ),
 
                 SizedBox(height: 40,),
+                
                 Container(
                   child: Text(scannedText, style: TextStyle(fontSize: 40)),
                 )
