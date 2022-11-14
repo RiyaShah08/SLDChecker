@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sldchecker/contenttest.dart';
+import 'package:sldchecker/database_image.dart';
 import 'package:sldchecker/homescreen.dart';
 import 'package:sldchecker/screening.dart';
 import 'package:sldchecker/testque.dart';
@@ -157,7 +158,7 @@ class _DyslexiaTestState extends State<DyslexiaTest> {
                     fontFamily: "Poppins",
                     fontWeight: FontWeight.w600),),
                 onPressed: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage(), ), );
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => data_image(), ), );
                 },
               ),
             ),
