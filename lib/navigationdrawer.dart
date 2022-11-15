@@ -90,16 +90,6 @@ class _DrawerScreenState extends State<DrawerScreen> {
                   ListTile(
                     onTap: () {},
                     leading: Image.asset(
-                      'asset/account.png', height: 25, width: 25,),
-                    title: Text('School', style: TextStyle(
-                        fontSize: 20,
-                        fontFamily: 'Inter',
-                        fontWeight: FontWeight.w100),),
-                  ),
-
-                  ListTile(
-                    onTap: () {},
-                    leading: Image.asset(
                       'asset/contact.png', height: 25, width: 25,),
                     title: Text('Contact', style: TextStyle(
                         fontSize: 20,
@@ -111,7 +101,7 @@ class _DrawerScreenState extends State<DrawerScreen> {
 
                   ListTile(
                     onTap: () {
-
+                      Navigator.pop(context);
                     },
                     leading: Image.asset(
                       'asset/logout.png', height: 25, width: 25,),
