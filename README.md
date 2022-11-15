@@ -1,4 +1,4 @@
-# sldchecker
+# SLDChecker
 
 A new Flutter project.
 
