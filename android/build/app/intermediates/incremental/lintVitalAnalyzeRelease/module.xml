@@ -1,0 +1,18 @@
+<lint-module
+    format="1"
+    dir="D:\sem7\cp3\SLDChecker\android\android\app"
+    name=":app"
+    type="APP"
+    maven="android:app:"
+    gradle="7.1.2"
+    buildFolder="D:\sem7\cp3\SLDChecker\android\build\app"
+    bootClassPath="C:\Users\Riya\AppData\Local\Android\Sdk\platforms\android-31\android.jar;C:\Users\Riya\AppData\Local\Android\Sdk\build-tools\30.0.3\core-lambda-stubs.jar"
+    javaSourceLevel="1.8"
+    compileTarget="android-31">
+  <lintOptions
+      abortOnError="true"
+      absolutePaths="true"
+      checkReleaseBuilds="true"
+      explainIssues="true"/>
+  <variant name="release"/>
+</lint-module>

@@ -1,9 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:sldchecker/testscreen.dart';
 import 'package:sldchecker/therapydetail.dart';
+import 'package:url_launcher/url_launcher.dart';
+import 'package:url_launcher/url_launcher.dart';
 
-class Therapy extends StatelessWidget {
+class Therapy extends StatefulWidget {
   const Therapy({Key? key}) : super(key: key);
+
+  @override
+  State<Therapy> createState() => _TherapyState();
+}
+
+class _TherapyState extends State<Therapy> {
+
+  Future<void> _launchUniversalLink(String url) async {
+    //final Uri uri = Uri(scheme: "https", host: url);
+    if (await launch(url)) {
+      final bool nativeAppLaunchSucceded = await launch(url, forceSafariVC: false, universalLinksOnly: true,);
+      if(!nativeAppLaunchSucceded)
+      {
+        throw "can not launch url";
+      }
+  }
+}
 
   @override
   Widget build(BuildContext context) {
@@ -93,6 +112,9 @@ class Therapy extends StatelessWidget {
                        fontFamily: "Poppins",
                        fontWeight: FontWeight.w600),),
                    onPressed: () {
+                     _launchUniversalLink("https://calendly.com");
+                     //html.window.open('https://www.fluttercampus.com',"_blank");
+                     //html.window.open('https://calendly.com/',"_self");
                      //Navigator.push(context, MaterialPageRoute(builder: (context) => TestPage(), ), );
                    },
                  ),
@@ -117,6 +139,7 @@ class Therapy extends StatelessWidget {
                        fontFamily: "Poppins",
                        fontWeight: FontWeight.w600),),
                    onPressed: () {
+                     _launchUniversalLink('https://create.kahoot.it/creator/311f9454-e86b-4a6a-b326-7b51c8375053');
                      //Navigator.push(context, MaterialPageRoute(builder: (context) => TestPage(), ), );
                    },
                  ),

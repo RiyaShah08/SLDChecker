@@ -48,6 +48,7 @@ class Testques extends StatelessWidget {
                       ]
                   )),
               ),
+              Image.asset('asset/', height: 45, width: 45,),
               Padding(
                 padding: const EdgeInsets.only(right: 25, left: 25, top: 25),
                 child: MaterialButton(

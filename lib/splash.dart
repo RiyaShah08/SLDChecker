@@ -81,7 +81,7 @@ class _sldhomeState extends State<sldhome> {
                               padding: const EdgeInsets.all(10.0),
                               child: Image.asset("asset/or.png", fit: BoxFit.fill),
                             ),
-                            MaterialButton(
+                            MaterialButton( 
                               color: Colors.white,
                               height: 40,
                               minWidth: 310,
