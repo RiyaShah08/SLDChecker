@@ -12,7 +12,6 @@ class data_image extends StatelessWidget {
         child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-
               Padding(
                 padding: const EdgeInsets.only(right: 30.0, top: 30, left: 20),
                 child: Row(

@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:google_ml_kit/google_ml_kit.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:sldchecker/database_image1.dart';
 
 
 class ScreenTest extends StatefulWidget {
@@ -119,7 +120,14 @@ class ScreenTest extends StatefulWidget {
 
                 Container(
                   child: Text(scannedText, style: TextStyle(fontSize: 40)),
-                )
+                ),
+
+                Padding(
+                    padding: const EdgeInsets.only(left: 200.0, top: 50),
+                    child: IconButton(icon: Icon(Icons.next_plan_rounded, size: 40), onPressed: () {
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => data_image1(), ), );
+                    }// child: Image.asset('asset/arrow_for.png', height: 50, width: 50)
+                    )),
               ],
             ),
              // SizedBox(height: 50),

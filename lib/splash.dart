@@ -22,7 +22,7 @@ class _sldhomeState extends State<sldhome> {
     return SafeArea(
       key: skey,
 
-      //use stack for backgroung upar image and all other things.
+      //use stack for background par image and all other things.
       child: Scaffold(
         body: SingleChildScrollView(
           child: Container(
