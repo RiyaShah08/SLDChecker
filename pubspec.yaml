@@ -51,6 +51,7 @@ dependencies:
   another_stepper: ^1.0.4
   url_launcher: ^6.0.17
   status_stepper: ^1.0.0
+  camera: ^0.9.4+19
 
 dev_dependencies:
   flutter_test:

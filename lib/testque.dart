@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sldchecker/testque1.dart';
 
 class Testques extends StatelessWidget {
   const Testques({Key? key}) : super(key: key);
@@ -48,7 +49,31 @@ class Testques extends StatelessWidget {
                       ]
                   )),
               ),
-              Image.asset('asset/', height: 45, width: 45,),
+              SizedBox(height: 10,),
+              Padding(
+                padding: const EdgeInsets.only(left: 50.0),
+                child: Image.asset('asset/yn.png', height: 250, width: 250),
+              ),
+              SizedBox(height: 5,),
+              Padding(
+                padding: const EdgeInsets.only(right: 25.0, left: 25, top: 15),
+                child: RichText(
+                    textAlign: TextAlign.justify,
+                    text: TextSpan(
+                        text: "Has difficulty reading unfamiliar",
+                        style: TextStyle(color: Colors.black, fontSize: 18, fontFamily: "Poppins", fontWeight: FontWeight.w300),
+                        children: <TextSpan>[
+                          TextSpan(
+                            text: '\nwords and often guesses at',
+                            style: TextStyle(color: Colors.black, fontSize: 18, fontFamily: "Poppins", fontWeight: FontWeight.w300),
+                          ),
+                          TextSpan(
+                            text: '\nthem.',
+                            style: TextStyle(color: Colors.black, fontSize: 18, fontFamily: "Poppins", fontWeight: FontWeight.w300),
+                          ),
+                        ]
+                    )),
+              ),
               Padding(
                 padding: const EdgeInsets.only(right: 25, left: 25, top: 25),
                 child: MaterialButton(
@@ -57,7 +82,9 @@ class Testques extends StatelessWidget {
                   color: Color(0xFF0085A3),
                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
                   minWidth: MediaQuery.of(context).size.width,
-                  onPressed: () {  },
+                  onPressed: () {
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => Testques1(), ), );
+                  },
                   child: Text(
                     "Yes",
                     textAlign: TextAlign.center,
@@ -76,7 +103,9 @@ class Testques extends StatelessWidget {
                   elevation: 20,
                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5), side: BorderSide(color: Color(0xFF0085A3), width: 2)),
                   minWidth: MediaQuery.of(context).size.width,
-                  onPressed: () {  },
+                  onPressed: () {
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => Testques1(), ), );
+                  },
                   child: Text("No", textAlign: TextAlign.center,
                     style: TextStyle(
                         fontSize: 20,
